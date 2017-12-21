@@ -13,4 +13,10 @@ class User
     JSON.load(file, symbolize_names: true)              #creates a JSON object from what is being read in
   end
 
+  def save
+    self.json = {email: @email, name: @name, permissions: @permissions}.to_json     #converts to a json object
+    open('users.json', 'a') do |file|
+    file.puts self_json
+    end
+  end
 end
